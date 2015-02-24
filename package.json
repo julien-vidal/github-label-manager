@@ -1,0 +1,40 @@
+{
+  "name": "github-label-manager",
+  "version": "0.0.0",
+  "description": "Import/Export Labels between two github projects",
+  "author": {
+    "name": "Vidal Julien",
+    "email": "julien.vidal.jv@gmail.com",
+    "url": "julien-vidal.fr"
+  },
+  "repository": "user/repo",
+  "license": "MIT",
+  "keywords": [
+    "github-label-manager",
+    "github",
+    "labels",
+    "import",
+    "export",
+    "nodejs",
+    "node",
+    "commandline"
+  ],
+  "dependencies": {
+    "commander": "^2.6.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0",
+    "jshint-stylish": "^1.0.0"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "bin": {
+    "github-label-manager": "github-labels-manager.js"
+  }
+}
