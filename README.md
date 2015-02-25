@@ -26,7 +26,6 @@ $ glm --help
 ```
 ## Todo
 
-- Better log by adding colors of labels in console (chalk)
 - Better error handling
 - publish package on npm
 - Make some other cool thing :D
