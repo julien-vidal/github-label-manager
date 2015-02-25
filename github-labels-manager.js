@@ -5,7 +5,7 @@
  */
 
 var program   = require('commander');
-var cmdImport = require('./src/cmd/cmd-import');
+var cmdImport = require('./src/cmd/import');
 
 program
   .version('0.0.1');
