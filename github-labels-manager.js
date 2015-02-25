@@ -4,30 +4,16 @@
  * Module dependencies.
  */
 
-var program = require('commander');
+var program   = require('commander');
+var cmdImport = require('./src/cmd-import');
 
 program
-  .version('0.0.1')
-  .description('An application for pizzas ordering')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq', 'Add bbq sauce')
-  .option('-c, --cheese <type>', 'Add the specified type of cheese [marble]')
-  .option('-C, --no-cheese', 'You do not want any cheese')
+  .version('0.0.1');
+
+program
+  .command('import <origin> <destination>')
+  .description('Import labels into an other github repository')
+  .action(cmdImport);
+
+program
   .parse(process.argv);
-
-console.log('you ordered a pizza with:');
-if (program.peppers){
-  console.log('  - peppers');
-}
-if (program.pineapple){
-  console.log('  - pineapple');
-}
-if (program.bbq){
-  console.log('  - bbq');
-}
-
-var cheese = true === program.cheese ? 'marble' : program.cheese || 'no';
-
-console.log('  - %s cheese', cheese);
-console.log(program.args);

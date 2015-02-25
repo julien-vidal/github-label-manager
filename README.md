@@ -1,28 +1,32 @@
 #  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
 
 > Import/Export Labels between two github projects
+> You have to have an account who have enough rights for that kind of process
 
 
 ## Install
 
 ```sh
-$ npm install --save github-label-manager
+$ npm install --g
 ```
+
+In your env variable you have to put this keys :
+GITHUB_USER=<userWhoWillDoProcess>
+GITHUB_PASSWORD=<yourPassword>
 
 
 ## Usage
 
-```js
-var github-label-manager = require('github-label-manager');
-
-github-label-manager('Rainbow');
-```
-
 ```sh
-$ npm install --global github-label-manager
+$ github-label-manager import <origin-repo-name> <destination-repo-name>
 $ github-label-manager --help
 ```
+## Todo
 
+- Clean/Upgrade code
+- Add token auth for github and remove password auth
+- publish package on npm
+- Make some other cool thing :D
 
 ## License
 
