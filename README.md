@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ npm install --g
+$ npm install github-label-manager --g
 ```
 
 In your env variable you have to put this keys :
@@ -27,7 +27,6 @@ $ glm --help
 ## Todo
 
 - Better error handling
-- publish package on npm
 - Make some other cool thing :D
 
 ## License
