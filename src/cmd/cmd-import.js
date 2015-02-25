@@ -1,4 +1,6 @@
 var GitHubApi = require("github");
+var q         = require("q");
+var config    = require("../glm-config");
 
 var githubConfig = {
   user      : process.env.GITHUB_USER,

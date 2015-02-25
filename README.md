@@ -25,7 +25,7 @@ $ github-label-manager --help
 ```
 ## Todo
 
-- Clean/Upgrade code
+- Clean/Upgrade code (inprogress)
 - Simplify command name
 - publish package on npm
 - Make some other cool thing :D
