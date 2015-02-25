@@ -18,13 +18,14 @@ GITHUB_TOKEN = "yourToken"
 ## Usage
 
 ```sh
+$ #Import labels from origin to destination
 $ glm import <origin-repo-name> <destination-repo-name>
+$ #Clear all labels from origin
+$ glm clear <origin-repo-name>
 $ glm --help
 ```
 ## Todo
 
-- Add some others commands
-  * Delete all labels
 - Better log by adding colors of labels in console (chalk)
 - Better error handling
 - publish package on npm
