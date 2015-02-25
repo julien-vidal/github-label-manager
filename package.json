@@ -37,6 +37,6 @@
     "test": "grunt"
   },
   "bin": {
-    "github-label-manager": "github-labels-manager.js"
+    "glm": "github-labels-manager.js"
   }
 }

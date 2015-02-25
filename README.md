@@ -1,5 +1,3 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
-
 > Import/Export Labels between two github projects
 > You have to have an account who have enough rights for that kind of process
 
@@ -20,13 +18,15 @@ GITHUB_TOKEN = "yourToken"
 ## Usage
 
 ```sh
-$ github-label-manager import <origin-repo-name> <destination-repo-name>
-$ github-label-manager --help
+$ glm import <origin-repo-name> <destination-repo-name>
+$ glm --help
 ```
 ## Todo
 
-- Clean/Upgrade code (inprogress)
-- Simplify command name
+- Add some others commands
+  * Delete all labels
+- Better log by adding colors of labels in console (chalk)
+- Better error handling
 - publish package on npm
 - Make some other cool thing :D
 
