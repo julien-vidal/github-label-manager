@@ -2,8 +2,9 @@ var GitHubApi = require("github");
 
 var githubConfig = {
   user      : process.env.GITHUB_USER,
-  password  : process.env.GITHUB_PASSWORD
+  token     : process.env.GITHUB_TOKEN
 };
+
 
 var github    = new GitHubApi({
   // required
@@ -11,9 +12,8 @@ var github    = new GitHubApi({
 });
 
 github.authenticate({
-  type: "basic",
-  username: githubConfig.user,
-  password: githubConfig.password
+  type: "oauth",
+  token: githubConfig.token
 });
 
 function logLabelCreation(err, labelInfo){

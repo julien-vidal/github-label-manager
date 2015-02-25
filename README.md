@@ -14,7 +14,7 @@ In your env variable you have to put this keys :
 
 GITHUB_USER = "userWhoWillDoProcess"
 
-GITHUB_PASSWORD = "yourPassword"
+GITHUB_TOKEN = "yourToken"
 
 
 ## Usage
@@ -26,7 +26,6 @@ $ github-label-manager --help
 ## Todo
 
 - Clean/Upgrade code
-- Add token auth for github and remove password auth
 - Simplify command name
 - publish package on npm
 - Make some other cool thing :D
