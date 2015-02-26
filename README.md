@@ -31,12 +31,4 @@ $ glm --help
 
 ## License
 
-MIT © [Vidal Julien](julien-vidal.fr)
-
-
-[npm-url]: https://npmjs.org/package/github-label-manager
-[npm-image]: https://badge.fury.io/js/github-label-manager.svg
-[travis-url]: https://travis-ci.org//github-label-manager
-[travis-image]: https://travis-ci.org//github-label-manager.svg?branch=master
-[daviddm-url]: https://david-dm.org//github-label-manager.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org//github-label-manager
+MIT © [Vidal Julien](http://www.julien-vidal.fr)
