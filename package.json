@@ -20,6 +20,7 @@
     "commandline"
   ],
   "dependencies": {
+    "chalk": "^1.0.0",
     "commander": "^2.6.0",
     "github": "^0.2.3",
     "q": "^1.2.0"
