@@ -1,30 +1,30 @@
 var GitHubApi = require("github");
 var q         = require("q");
 var config    = require("../glm-config");
+var logger    = require("../services/logger");
 
 var github    = new GitHubApi(config.github.init);
 
 function logLabelCreation(promises){
   var i;
   var length  = promises.length;
-  var message = '';
+
   for(i = 0; i < length; i++){
     if(promises[i].state === "fulfilled"){
-      message = 'destination --> Label : ' + promises[i].value.name + ' imported';
+      logger.success('destination --> Label : ' + promises[i].value.name + ' imported');
     }
     else if(promises[i].state === "rejected"){
-      message = 'destination  --> [err] Label : not imported';
+      logger.error('destination  --> [err] Label : not imported');
     }
     else{
-      message = 'destination  --> [err:promise] unknown...';
+      logger.error('destination  --> [err:promise] unknown...');
     }
-    console.log(message);
   }
 }
 
 function createLabel(label, destination){
   var githubCreateLabel = q.nfbind(github.issues.createLabel);
-  console.log('origin --> Label founded : ', label.name);
+  logger.log('origin --> Label founded : ' + label.name);
   return githubCreateLabel({
     user    : config.github.user,
     repo    : destination,

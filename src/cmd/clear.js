@@ -1,30 +1,30 @@
 var GitHubApi = require("github");
 var q         = require("q");
 var config    = require("../glm-config");
+var logger    = require("../services/logger");
+
 
 var github    = new GitHubApi(config.github.init);
 
 function logLabelDeletion(promises){
   var i;
   var length  = promises.length;
-  var message = '';
   for(i = 0; i < length; i++){
     if(promises[i].state === "fulfilled"){
-      message = 'origin --> Label : ' + promises[i].value.name + ' removed';
+      logger.success('origin --> Label : ' + promises[i].value.name + ' removed');
     }
     else if(promises[i].state === "rejected"){
-      message = 'origin  --> [err] Label : not delete';
+      logger.error('origin  --> [err] Label : not delete');
     }
     else{
-      message = 'origin  --> [err:promise] unknown...';
+      logger.error('origin  --> [err:promise] unknown...');
     }
-    console.log(message);
   }
 }
 
 function deleteLabel(label, origin){
   var githubDeleteLabel = q.nfbind(github.issues.deleteLabel);
-  console.log('origin --> Label founded : ', label.name);
+  logger.log('origin --> Label founded : ' + label.name);
   return githubDeleteLabel({
       user    : config.github.user,
       repo    : origin,
