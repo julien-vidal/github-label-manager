@@ -6,19 +6,24 @@ var logger    = require("../services/logger");
 
 var github    = new GitHubApi(config.github.init);
 
-function logLabelDeletion(promises){
+function logLabelDeletion(promises, labels){
   var i;
   var length  = promises.length;
-  for(i = 0; i < length; i++){
-    if(promises[i].state === "fulfilled"){
-      logger.success('origin --> Label : ' + promises[i].value.name + ' removed');
+  if(length > 0){
+    for(i = 0; i < length; i++){
+      if(promises[i].state === "fulfilled"){
+        logger.success('origin --> Label removed : ' + promises[i].value.name);
+      }
+      else if(promises[i].state === "rejected"){
+        logger.error('origin --> Label not delete : '+labels[i].name);
+      }
+      else{
+        logger.error('origin --> [err:promise] unknown...');
+      }
     }
-    else if(promises[i].state === "rejected"){
-      logger.error('origin  --> [err] Label : not delete');
-    }
-    else{
-      logger.error('origin  --> [err:promise] unknown...');
-    }
+  }
+  else{
+    logger.success('origin --> Already clear !');
   }
 }
 
@@ -57,6 +62,7 @@ function clearLabels(labels, origin){
 }
 
 var cmdClear= function cmdClear(origin){
+  var globalLabels = [];
   github.authenticate({
     type: "oauth",
     token: config.github.token
@@ -64,9 +70,12 @@ var cmdClear= function cmdClear(origin){
 
   getLabels(origin)
     .then(function(labels){
+      globalLabels = labels;
       return clearLabels(labels, origin);
     }, console.error)
-    .then(logLabelDeletion, console.error);
+    .then(function(labelsCleared){
+      logLabelDeletion(labelsCleared, globalLabels);
+    }, console.error);
 };
 
 module.exports = cmdClear;
