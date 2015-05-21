@@ -5,6 +5,6 @@ var logger    = require("../services/logger");
 
 var github    = new GitHubApi(config.github.init);
 
-var cmdImport = function cmdImport(repository, sourceFile){};
+var cmdExport = function cmdExport(repository, exportFile){};
 
-module.exports = cmdImport;
+module.exports = cmdExport;

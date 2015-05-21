@@ -25,18 +25,11 @@ $ glm clear <origin-repo-name>
 $ glm --help
 ```
 
-## Extras
-
-- Messages are colored thanks to chalk package
-
 ## Todo
 
-- Better error handling
-  + Use Chalk for color all levels
-  + Implement a custom logger
-  + Use it in existing commands
-  + Decrypt github error and display message accordingly
 - Import/Export json to/from a repository
+- Better error handling
+  + Decrypt github error and display message accordingly
 - Improve credential process
   + Keep existing
   + Add params in cmd line
