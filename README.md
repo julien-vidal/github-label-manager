@@ -27,7 +27,10 @@ $ glm --help
 
 ## Todo
 
-- Import/Export json to/from a repository
+- \[WIP\] Import/Export json to/from a repository
+- Refactor code
+  + Too many copy/paste have to be factorised in services.
+  + Other ideas ?
 - Better error handling
   + Decrypt github error and display message accordingly
 - Improve credential process

@@ -54,12 +54,9 @@ function copyLabels(labels, destination){
   var i;
   var labelsLength = labels.length;
   var promises = [];
-  var test = null;
 
   for(i = 0; i < labelsLength; i++){
-    test = createLabel(labels[i], destination);
-    test.label = labels[i];
-    promises.push(test);
+    promises.push(createLabel(labels[i], destination));
   }
 
   return q.allSettled(promises);
