@@ -72,10 +72,11 @@ var cmdClear= function cmdClear(origin){
     .then(function(labels){
       globalLabels = labels;
       return clearLabels(labels, origin);
-    }, console.error)
+    })
     .then(function(labelsCleared){
       logLabelDeletion(labelsCleared, globalLabels);
-    }, console.error);
+    })
+    .catch(logger.error.bind(logger));
 };
 
 module.exports = cmdClear;

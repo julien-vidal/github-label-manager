@@ -33,7 +33,7 @@ var cmdExport = function cmdExport(repository, exportFile){
     .then(function(labels){
       writeLabels(labels, exportFile);
     })
-    .catch(console.error);
+    .catch(logger.error.bind(logger));
 };
 
 module.exports = cmdExport;

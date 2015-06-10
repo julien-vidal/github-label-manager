@@ -28,6 +28,7 @@ function Logger(){
 Logger.prototype.prepareMsg = function(level, msg) {
   var currentLevel  = this.levels[level];
   var color         = currentLevel.color;
+  msg               = msg.toString();
   return chalk.bold[currentLevel.color](currentLevel.prefix) + chalk[color](msg);
 };
 

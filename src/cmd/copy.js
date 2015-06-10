@@ -73,10 +73,11 @@ var cmdCopy = function cmdCopy(origin, destination){
     .then(function(labels){
       globalLabels = labels;
       return copyLabels(labels, destination);
-    }, console.error)
+    })
     .then(function(labelsImport){
       logLabelCreation(labelsImport, globalLabels);
-    }, console.error)
+    })
+    .catch(logger.error.bind(logger));
 };
 
 module.exports = cmdCopy;

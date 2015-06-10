@@ -72,9 +72,7 @@ var cmdImport = function cmdImport(repository, sourceFile){
     .then(function(labelsImported){
       logLabelCreation(labelsImported, jsonData);
     })
-    .catch(function(err){
-      logger.error(err);
-    });
+    .catch(logger.error.bind(logger));
 
 };
 

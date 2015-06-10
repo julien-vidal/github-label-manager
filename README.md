@@ -18,8 +18,12 @@ GITHUB_TOKEN = "yourToken"
 ## Usage
 
 ```sh
-$ #Import labels from origin to destination
-$ glm import <origin-repo-name> <destination-repo-name>
+$ #Copy labels from origin to destination
+$ glm copy <origin-repo-name> <destination-repo-name>
+$ #Import labels from json file to repository
+$ glm import <repo-name> <path-to-json-file>
+$ #Export labels from repository to json file  
+$ glm export <repo-name> <path-to-json-file>
 $ #Clear all labels from origin
 $ glm clear <origin-repo-name>
 $ glm --help
@@ -27,7 +31,6 @@ $ glm --help
 
 ## Todo
 
-- \[WIP\] Import/Export json to/from a repository
 - Refactor code
   + Too many copy/paste have to be factorised in services.
   + Other ideas ?
