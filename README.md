@@ -45,6 +45,7 @@ $ glm --help
   + Other ideas ?
 - Better error handling
   + Decrypt github error and display message accordingly
+- improve export output
 - Improve credential process
   + Keep existing
   + Add params in cmd line

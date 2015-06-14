@@ -1,9 +1,7 @@
-var GitHubApi = require("github");
 var q         = require("q");
 var config    = require("../glm-config");
+var wGithub   = require("../services/github-wrapper");
 var logger    = require("../services/logger");
-
-var github    = new GitHubApi(config.github.init);
 
 function logLabelCreation(promises, labels){
   var i;
@@ -32,9 +30,8 @@ function logLabelCreation(promises, labels){
 }
 
 function createLabel(label, destination){
-  var githubCreateLabel = q.nfbind(github.issues.createLabel);
   logger.log('origin --> Label founded : ' + label.name);
-  return githubCreateLabel({
+  return wGithub.createLabel({
     user    : config.github.user,
     repo    : destination,
     name    : label.name,
@@ -43,8 +40,7 @@ function createLabel(label, destination){
 }
 
 function getLabels(origin){
-  var githubGetLabels = q.nfbind(github.issues.getLabels);
-  return githubGetLabels({
+  return wGithub.getLabels({
     user: config.github.user,
     repo: origin
   });
@@ -64,11 +60,6 @@ function copyLabels(labels, destination){
 
 var cmdCopy = function cmdCopy(origin, destination){
   var globalLabels = [];
-  github.authenticate({
-    type: "oauth",
-    token: config.github.token
-  });
-
   getLabels(origin)
     .then(function(labels){
       globalLabels = labels;

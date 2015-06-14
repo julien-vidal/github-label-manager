@@ -1,14 +1,11 @@
-var GitHubApi = require("github");
 var q         = require("q");
 var fs        = require("fs");
 var config    = require("../glm-config");
+var wGithub   = require("../services/github-wrapper");
 var logger    = require("../services/logger");
 
-var github    = new GitHubApi(config.github.init);
-
 function getLabels(origin){
-  var githubGetLabels = q.nfbind(github.issues.getLabels);
-  return githubGetLabels({
+  return wGithub.getLabels({
     user: config.github.user,
     repo: origin
   });
@@ -25,10 +22,6 @@ function writeLabels(labels, path){
 }
 
 var cmdExport = function cmdExport(repository, exportFile){
-  github.authenticate({
-    type: "oauth",
-    token: config.github.token
-  });
   getLabels(repository)
     .then(function(labels){
       writeLabels(labels, exportFile);

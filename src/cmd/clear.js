@@ -1,10 +1,7 @@
-var GitHubApi = require("github");
 var q         = require("q");
 var config    = require("../glm-config");
+var wGithub   = require("../services/github-wrapper");
 var logger    = require("../services/logger");
-
-
-var github    = new GitHubApi(config.github.init);
 
 function logLabelDeletion(promises, labels){
   var i;
@@ -28,9 +25,8 @@ function logLabelDeletion(promises, labels){
 }
 
 function deleteLabel(label, origin){
-  var githubDeleteLabel = q.nfbind(github.issues.deleteLabel);
   logger.log('origin --> Label founded : ' + label.name);
-  return githubDeleteLabel({
+  return wGithub.deleteLabel({
       user    : config.github.user,
       repo    : origin,
       name    : label.name
@@ -42,8 +38,7 @@ function deleteLabel(label, origin){
 }
 
 function getLabels(origin){
-  var githubGetLabels = q.nfbind(github.issues.getLabels);
-  return githubGetLabels({
+  return wGithub.getLabels({
     user: config.github.user,
     repo: origin
   });
@@ -63,10 +58,6 @@ function clearLabels(labels, origin){
 
 var cmdClear= function cmdClear(origin){
   var globalLabels = [];
-  github.authenticate({
-    type: "oauth",
-    token: config.github.token
-  });
 
   getLabels(origin)
     .then(function(labels){
