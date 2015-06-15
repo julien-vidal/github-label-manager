@@ -4,33 +4,32 @@ var wGithub       = require("../services/github-wrapper");
 var logger        = require("../services/logger");
 var labelLogger   = require("../services/label-logger");
 
-function deleteLabel(label, origin){
+function createLabel(label, destination){
   logger.log('origin --> Label founded : ' + label.name);
-  return wGithub.deleteLabel({
-      user    : config.github.user,
-      repo    : origin,
-      name    : label.name
-    })
-    .then(function(response){
-      response.name = label.name;
-      return response;
-    });
+  return wGithub.createLabel({
+    user    : config.github.user,
+    repo    : destination,
+    name    : label.name,
+    color   : label.color
+  });
 }
 
-function clearLabels(labels, origin){
+function copyLabels(labels, destination){
   var i;
   var labelsLength = labels.length;
   var promises = [];
 
   for(i = 0; i < labelsLength; i++){
-    promises.push(deleteLabel(labels[i], origin));
+    promises.push(createLabel(labels[i], destination));
   }
 
   return q.allSettled(promises);
 }
 
-function cmdClear(origin){
+var cmdCopy = function cmdCopy(origin, destination){
   var globalLabels = [];
+
+  console.log(arguments);
 
   wGithub
     .getLabels({
@@ -39,12 +38,12 @@ function cmdClear(origin){
     })
     .then(function(labels){
       globalLabels = labels;
-      return clearLabels(labels, origin);
+      return copyLabels(labels, destination);
     })
-    .then(function(labelsCleared){
-      labelLogger.logDelete(labelsCleared, globalLabels);
+    .then(function(labelsImport){
+      labelLogger.logCreate(labelsImport, globalLabels);
     })
     .catch(logger.error.bind(logger));
-}
+};
 
-module.exports = cmdClear;
+module.exports = cmdCopy;

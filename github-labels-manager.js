@@ -4,17 +4,33 @@
  * Module dependencies.
  */
 
-var program   = require('commander');
-var cmdImport = require('./src/cmd/import');
-var cmdClear  = require('./src/cmd/clear');
+var program         = require('commander');
+var config          = require("./src/glm-config");
+var wGithub         = require("./src/services/github-wrapper");
+var cmdCopy         = require('./src/cmd/copy');
+var cmdImport       = require('./src/cmd/import');
+var cmdExport       = require('./src/cmd/export');
+var cmdClear        = require('./src/cmd/clear');
 
 program
-  .version('0.0.1');
+  .version('0.0.2')
+  .option('-u, --user [user]', 'Github user to use')
+  .option('-t, --token [token]', 'Github token to use');
 
 program
-  .command('import <origin> <destination>')
+  .command('copy <origin> <destination>')
   .description('Import labels into an other github repository')
+  .action(cmdCopy);
+
+program
+  .command('import <repository> <sourceFile>')
+  .description('Import JSON to repository')
   .action(cmdImport);
+
+program
+  .command('export <repository> <exportFile>')
+  .description('Export a repository labels in a JSON file')
+  .action(cmdExport);
 
 program
   .command('clear <origin>')
@@ -23,3 +39,6 @@ program
 
 program
   .parse(process.argv);
+
+config.init(program);
+wGithub.connect();

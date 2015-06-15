@@ -1,31 +1,32 @@
-var GitHubApi = require("github");
-var q         = require("q");
-var config    = require("../glm-config");
+var q             = require("q");
+var fs            = require("fs");
+var config        = require("../glm-config");
+var wGithub       = require("../services/github-wrapper");
+var logger        = require("../services/logger");
+var labelLogger   = require("../services/label-logger");
 
-var github    = new GitHubApi(config.github.init);
-
-function logLabelCreation(promises){
-  var i;
-  var length  = promises.length;
-  var message = '';
-  for(i = 0; i < length; i++){
-    if(promises[i].state === "fulfilled"){
-      message = 'destination --> Label : ' + promises[i].value.name + ' imported';
-    }
-    else if(promises[i].state === "rejected"){
-      message = 'destination  --> [err] Label : not imported';
-    }
-    else{
-      message = 'destination  --> [err:promise] unknown...';
-    }
-    console.log(message);
+function parseJsonFile(path){
+  var jsonData = [];
+  try {
+    jsonData = JSON.parse(fs.readFileSync(path, 'utf8'));
   }
+  catch(e){
+    logger.error(e);
+  }
+  return jsonData;
+}
+
+function importJson(repository, jsonData){
+  var promises      = [];
+  jsonData.forEach(function(label){
+    promises.push(createLabel(label, repository));
+  });
+  return q.allSettled(promises);
 }
 
 function createLabel(label, destination){
-  var githubCreateLabel = q.nfbind(github.issues.createLabel);
-  console.log('origin --> Label founded : ', label.name);
-  return githubCreateLabel({
+  logger.log('json --> Label founded : ' + label.name);
+  return wGithub.createLabel({
     user    : config.github.user,
     repo    : destination,
     name    : label.name,
@@ -33,37 +34,14 @@ function createLabel(label, destination){
   });
 }
 
-function getLabels(origin){
-  var githubGetLabels = q.nfbind(github.issues.getLabels);
-  return githubGetLabels({
-    user: config.github.user,
-    repo: origin
-  });
-}
+var cmdImport = function cmdImport(repository, sourceFile){
+  var jsonData = parseJsonFile(sourceFile);
 
-function importLabels(labels, destination){
-  var i;
-  var labelsLength = labels.length;
-  var promises = [];
-
-  for(i = 0; i < labelsLength; i++){
-    promises.push(createLabel(labels[i], destination));
-  }
-
-  return q.allSettled(promises);
-}
-
-var cmdImport = function cmdImport(origin, destination){
-  github.authenticate({
-    type: "oauth",
-    token: config.github.token
-  });
-
-  getLabels(origin)
-    .then(function(labels){
-      return importLabels(labels, destination);
-    }, console.error)
-    .then(logLabelCreation, console.error);
+  importJson(repository, jsonData)
+    .then(function(labelsImported){
+      labelLogger.logCreate(labelsImported, jsonData);
+    })
+    .catch(logger.error.bind(logger));
 };
 
 module.exports = cmdImport;

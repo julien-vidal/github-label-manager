@@ -1,4 +1,5 @@
 /node_modules/
+/fixtures
 npm-debug.log
 .idea/
 .yo-rc.json
