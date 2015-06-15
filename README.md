@@ -49,11 +49,10 @@ $ glm --help
   + Keep existing
   + Add params in cmd line
   + Is it possible to configure it via a config command?
-  + 3 levels
+  + 2 levels
     * 1) Check command params
-    * 2) Check global config
-    * 3) Check env variables
-    * 4) Sorry dude I can't do anything for you...
+    * 2) Check env variables
+    * 3) Sorry dude I can't do anything for you...
 - Can import only label and randomly create a color for it
 - Make some other cool thing :D
 

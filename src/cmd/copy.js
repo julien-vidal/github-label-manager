@@ -28,6 +28,9 @@ function copyLabels(labels, destination){
 
 var cmdCopy = function cmdCopy(origin, destination){
   var globalLabels = [];
+
+  console.log(arguments);
+
   wGithub
     .getLabels({
       user: config.github.user,

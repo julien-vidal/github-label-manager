@@ -32,6 +32,8 @@ function clearLabels(labels, origin){
 function cmdClear(origin){
   var globalLabels = [];
 
+  console.log(arguments);
+
   wGithub
     .getLabels({
       user: config.github.user,
