@@ -1,15 +1,7 @@
-var q         = require("q");
 var fs        = require("fs");
 var config    = require("../glm-config");
 var wGithub   = require("../services/github-wrapper");
 var logger    = require("../services/logger");
-
-function getLabels(origin){
-  return wGithub.getLabels({
-    user: config.github.user,
-    repo: origin
-  });
-}
 
 function writeLabels(labels, path){
   labels = labels.map(function(githubLabel){
@@ -22,7 +14,11 @@ function writeLabels(labels, path){
 }
 
 var cmdExport = function cmdExport(repository, exportFile){
-  getLabels(repository)
+  wGithub
+    .getLabels({
+      user: config.github.user,
+      repo: repository
+    })
     .then(function(labels){
       writeLabels(labels, exportFile);
     })

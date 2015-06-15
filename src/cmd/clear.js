@@ -1,28 +1,8 @@
-var q         = require("q");
-var config    = require("../glm-config");
-var wGithub   = require("../services/github-wrapper");
-var logger    = require("../services/logger");
-
-function logLabelDeletion(promises, labels){
-  var i;
-  var length  = promises.length;
-  if(length > 0){
-    for(i = 0; i < length; i++){
-      if(promises[i].state === "fulfilled"){
-        logger.success('origin --> Label removed : ' + promises[i].value.name);
-      }
-      else if(promises[i].state === "rejected"){
-        logger.error('origin --> Label not delete : '+labels[i].name);
-      }
-      else{
-        logger.error('origin --> [err:promise] unknown...');
-      }
-    }
-  }
-  else{
-    logger.success('origin --> Already clear !');
-  }
-}
+var q             = require("q");
+var config        = require("../glm-config");
+var wGithub       = require("../services/github-wrapper");
+var logger        = require("../services/logger");
+var labelLogger   = require("../services/label-logger");
 
 function deleteLabel(label, origin){
   logger.log('origin --> Label founded : ' + label.name);
@@ -37,13 +17,6 @@ function deleteLabel(label, origin){
     });
 }
 
-function getLabels(origin){
-  return wGithub.getLabels({
-    user: config.github.user,
-    repo: origin
-  });
-}
-
 function clearLabels(labels, origin){
   var i;
   var labelsLength = labels.length;
@@ -56,18 +29,22 @@ function clearLabels(labels, origin){
   return q.allSettled(promises);
 }
 
-var cmdClear= function cmdClear(origin){
+function cmdClear(origin){
   var globalLabels = [];
 
-  getLabels(origin)
+  wGithub
+    .getLabels({
+      user: config.github.user,
+      repo: origin
+    })
     .then(function(labels){
       globalLabels = labels;
       return clearLabels(labels, origin);
     })
     .then(function(labelsCleared){
-      logLabelDeletion(labelsCleared, globalLabels);
+      labelLogger.logDelete(labelsCleared, globalLabels);
     })
     .catch(logger.error.bind(logger));
-};
+}
 
 module.exports = cmdClear;

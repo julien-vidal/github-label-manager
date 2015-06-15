@@ -1,8 +1,9 @@
-var q         = require("q");
-var fs        = require("fs");
-var config    = require("../glm-config");
-var wGithub   = require("../services/github-wrapper");
-var logger    = require("../services/logger");
+var q             = require("q");
+var fs            = require("fs");
+var config        = require("../glm-config");
+var wGithub       = require("../services/github-wrapper");
+var logger        = require("../services/logger");
+var labelLogger   = require("../services/label-logger");
 
 function parseJsonFile(path){
   var jsonData = [];
@@ -13,32 +14,6 @@ function parseJsonFile(path){
     logger.error(e);
   }
   return jsonData;
-}
-
-function logLabelCreation(promises, jsonData){
-  var i;
-  var length  = promises.length;
-
-  for(i = 0; i < length; i++){
-    if(promises[i].state === "fulfilled"){
-      logger.success('target --> Label  imported : ' + promises[i].value.name);
-    }
-    else if(promises[i].state === "rejected"){
-      switch(promises[i].reason.code){
-        case 404 :
-          logger.error('target --> Repository not founded');
-          break;
-        case 422 :
-          logger.error('target --> Label already exist : ' + jsonData[i].name);
-          break;
-        default:
-          logger.error('target --> Unsupported github error code : '+promises[i].reason.code);
-      }
-    }
-    else{
-      logger.error('target --> [err:promise] unknown...');
-    }
-  }
 }
 
 function importJson(repository, jsonData){
@@ -64,7 +39,7 @@ var cmdImport = function cmdImport(repository, sourceFile){
 
   importJson(repository, jsonData)
     .then(function(labelsImported){
-      logLabelCreation(labelsImported, jsonData);
+      labelLogger.logCreate(labelsImported, jsonData);
     })
     .catch(logger.error.bind(logger));
 };
