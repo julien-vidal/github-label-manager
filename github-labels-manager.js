@@ -5,6 +5,8 @@
  */
 
 var program         = require('commander');
+var config          = require("./src/glm-config");
+var wGithub         = require("./src/services/github-wrapper");
 var cmdCopy         = require('./src/cmd/copy');
 var cmdImport       = require('./src/cmd/import');
 var cmdExport       = require('./src/cmd/export');
@@ -37,3 +39,6 @@ program
 
 program
   .parse(process.argv);
+
+config.init(program);
+wGithub.connect();

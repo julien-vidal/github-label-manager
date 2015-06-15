@@ -29,7 +29,7 @@ LabelLogger.prototype.logCreate = function (promises, jsonData){
 
   for(i = 0; i < length; i++){
     if(promises[i].state === "fulfilled"){
-      logger.success('target --> Label  imported : ' + promises[i].value.name);
+      logger.success('target --> Label imported : ' + promises[i].value.name);
     }
     else if(promises[i].state === "rejected"){
       switch(promises[i].reason.code){

@@ -6,7 +6,6 @@ var githubConnector = new GitHubApi(config.github.init);
 
 function GithubWrapper(){
   this.github  = githubConnector;
-  this.connect();
 }
 
 /**

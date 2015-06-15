@@ -5,11 +5,11 @@
 
 One day with a teammate, we have many repositories and one of them only have been set with 
 labels we use everyday. So we have to copy all of them in each repository. So we go on github
-labels interface and suprise ! You have to create your label one by one...
+labels interface and suprise ! You have to create your labels one by one...
 
-This project was born. Some other package allow you to do such things.
+This project was born. Some other packages allow you to do such things.
 
-I just want to group them here and maybe add more.
+I just want to group them here and maybe add some more.
 
 ## Install
 
@@ -22,7 +22,6 @@ In your env variable you have to put this keys :
 GITHUB_USER = "userWhoWillDoProcess"
 
 GITHUB_TOKEN = "yourToken"
-
 
 ## Usage
 
@@ -45,14 +44,6 @@ $ glm --help
 
 ## Todo
 
-- Improve credential process
-  + Keep existing
-  + Add params in cmd line
-  + Is it possible to configure it via a config command?
-  + 2 levels
-    * 1) Check command params
-    * 2) Check env variables
-    * 3) Sorry dude I can't do anything for you...
 - Can import only label and randomly create a color for it
 - Make some other cool thing :D
 
