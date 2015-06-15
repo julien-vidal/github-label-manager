@@ -1,7 +1,8 @@
-var fs        = require("fs");
-var config    = require("../glm-config");
-var wGithub   = require("../services/github-wrapper");
-var logger    = require("../services/logger");
+var fs            = require("fs");
+var config        = require("../glm-config");
+var wGithub       = require("../services/github-wrapper");
+var logger        = require("../services/logger");
+var labelLogger   = require("../services/label-logger");
 
 function writeLabels(labels, path){
   labels = labels.map(function(githubLabel){
@@ -11,6 +12,7 @@ function writeLabels(labels, path){
     };
   });
   fs.writeFileSync(path, JSON.stringify(labels, null, 4), 'utf8');
+  labelLogger.logExport(labels, path);
 }
 
 var cmdExport = function cmdExport(repository, exportFile){

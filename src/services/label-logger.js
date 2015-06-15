@@ -49,5 +49,20 @@ LabelLogger.prototype.logCreate = function (promises, jsonData){
   }
 };
 
+LabelLogger.prototype.logExport = function (labels, path){
+  var i;
+  var length  = labels.length;
+
+  if(length > 0){
+    for(i = 0; i < length; i++){
+      logger.info('origin --> Label exported : (' + labels[i].color + ') ' + labels[i].name);
+    }
+    logger.success('Labels exported in file : ' + path);
+  }
+  else{
+    logger.success('origin --> No labels in that repository !');
+  }
+};
+
 
 module.exports = new LabelLogger();

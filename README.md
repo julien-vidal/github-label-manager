@@ -29,23 +29,22 @@ GITHUB_TOKEN = "yourToken"
 ```sh
 $ #Copy labels from origin to destination
 $ glm copy <origin-repo-name> <destination-repo-name>
+$ 
 $ #Import labels from json file to repository
 $ glm import <repo-name> <path-to-json-file>
+$
 $ #Export labels from repository to json file  
 $ glm export <repo-name> <path-to-json-file>
+$
 $ #Clear all labels from origin
 $ glm clear <origin-repo-name>
+$
+$ #Detail about all available commands
 $ glm --help
 ```
 
 ## Todo
 
-- Refactor code
-  + Too many copy/paste have to be factorised in services.
-  + Other ideas ?
-- Better error handling
-  + Decrypt github error and display message accordingly
-- improve export output
 - Improve credential process
   + Keep existing
   + Add params in cmd line

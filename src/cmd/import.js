@@ -25,7 +25,7 @@ function importJson(repository, jsonData){
 }
 
 function createLabel(label, destination){
-  logger.log('origin --> Label founded : ' + label.name);
+  logger.log('json --> Label founded : ' + label.name);
   return wGithub.createLabel({
     user    : config.github.user,
     repo    : destination,
