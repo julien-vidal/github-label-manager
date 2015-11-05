@@ -13,7 +13,7 @@ var cmdExport       = require('./src/cmd/export');
 var cmdClear        = require('./src/cmd/clear');
 
 program
-  .version('0.0.2')
+  .version('1.1.0')
   .option('-u, --user [user]', 'Github user to use')
   .option('-t, --token [token]', 'Github token to use');
 
