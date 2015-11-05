@@ -37,6 +37,8 @@ program
   .description('Clear all labels on that repository')
   .action(cmdClear);
 
+program.on('--help', config.additionalHelp);
+
 program
   .parse(process.argv);
 

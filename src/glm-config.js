@@ -23,4 +23,13 @@ GlmConfig.prototype.checkValidity = function() {
   }
 };
 
+GlmConfig.prototype.additionalHelp = function(){
+  console.log('  Note : ');
+  console.log('');
+  console.log('    You can specify which organisation to use on');
+  console.log('    <origin> <destination> <repository>');
+  console.log('    By prefixing the repository with org: (Example : superorg:myawesomerepo)');
+  console.log('');
+};
+
 module.exports = new GlmConfig();

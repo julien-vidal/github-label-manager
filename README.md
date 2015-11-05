@@ -98,6 +98,11 @@ The opposite of import command, this will export all your labels for a repositor
 #Export labels from repository to json file  
 glm export <repo-name> <path-to-json-file>
 ```
+
+### Note
+
+You can specify which organisation to use on <origin> <destination> <repository> by prefixing the repository with org (Example : superorg:myawesomerepo)
+
 ### Misc
 
 You can use help if you need it
