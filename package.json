@@ -26,13 +26,15 @@
     "q": "^1.2.0"
   },
   "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^1.0.0",
-    "time-grunt": "^1.0.0",
-    "jshint-stylish": "^1.0.0"
+    "time-grunt": "^1.0.0"
   },
   "scripts": {
     "test": "grunt"
