@@ -103,6 +103,11 @@ glm export <repo-name> <path-to-json-file>
 
 You can specify which organisation to use on <origin> <destination> <repository> by prefixing the repository with org (Example : superorg:myawesomerepo)
 
+```sh
+#Copy labels from origin to destination (we precise organisation to target good repository)
+glm copy gru-tech:evil-machina minion-factory:evil-machina
+```
+
 ### Misc
 
 You can use help if you need it
