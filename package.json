@@ -1,13 +1,13 @@
 {
   "name": "github-label-manager",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Import/Export Labels between two github projects",
   "author": {
     "name": "Vidal Julien",
     "email": "julien.vidal.jv@gmail.com",
     "url": "julien-vidal.fr"
   },
-  "repository": "julien-vidal/github-label-manager",
+  "repository": "https://github.com/julien-vidal/github-label-manager.git",
   "license": "MIT",
   "keywords": [
     "github-label-manager",
