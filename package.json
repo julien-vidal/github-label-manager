@@ -22,7 +22,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.6.0",
-    "github": "^0.2.3",
+    "github": "~2.1.0",
     "q": "^1.2.0"
   },
   "devDependencies": {
