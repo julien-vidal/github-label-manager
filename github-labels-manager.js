@@ -19,11 +19,13 @@ program
 
 program
   .command('copy <origin> <destination>')
+  .option("-s, --strategy [mode]", "How glm will process existing labels, -s:update (default : label color updated), -s:replace (All labels cleared and replaced)", "update")
   .description('Import labels into an other github repository')
   .action(cmdCopy);
 
 program
   .command('import <repository> <sourceFile>')
+  .option("-s, --strategy [mode]", "How glm will process existing labels, -s:update (default : label color updated), -s:replace (All labels cleared and replaced)", "update")
   .description('Import JSON to repository')
   .action(cmdImport);
 

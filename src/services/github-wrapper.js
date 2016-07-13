@@ -19,6 +19,7 @@ GithubWrapper.prototype.connect = function() {
 };
 
 GithubWrapper.prototype.createLabel  = q.nfbind(githubConnector.issues.createLabel);
+GithubWrapper.prototype.updateLabel  = q.nfbind(githubConnector.issues.updateLabel);
 GithubWrapper.prototype.getLabels    = q.nfbind(githubConnector.issues.getLabels);
 GithubWrapper.prototype.deleteLabel  = q.nfbind(githubConnector.issues.deleteLabel);
 
