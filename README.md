@@ -29,8 +29,8 @@ Create a Personal access token on GitHub is really easy. Go to [this page](https
 Then add the following environment variables in your .bashrc (Linux) or .bash_profile (Mac).
 
 ```
-export GITHUB_USER = "youtGithubUsername"
-export GITHUB_TOKEN = "yourfreshlygeneratedToken"
+export GITHUB_USER="youtGithubUsername"
+export GITHUB_TOKEN="yourfreshlygeneratedToken"
 ```
 
 ### Authentication via command options
