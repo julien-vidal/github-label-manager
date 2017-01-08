@@ -37,7 +37,7 @@ var cmdImport = function cmdImport(repository, sourceFile){
   }
 
   function createLabel(label){
-    logger.log('json --> Label founded : ' + label.name);
+    logger.log('json --> Label found : ' + label.name);
     return wGithub.createLabel({
       user    : parsed.user,
       repo    : parsed.repo,
