@@ -26,7 +26,7 @@ var cmdCopy = function cmdCopy(origin, destination){
   //////////////////////////////////////////////////////////////////////
 
   function createLabel(label){
-    logger.log('origin --> Label founded : ' + label.name);
+    logger.log('origin --> Label discovered : ' + label.name);
     return wGithub.createLabel({
       user    : parsedDestination.user,
       repo    : parsedDestination.repo,
