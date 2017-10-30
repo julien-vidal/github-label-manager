@@ -11,15 +11,15 @@ LabelLogger.prototype.logDelete = function (promises, labels){
         logger.success('origin --> Label removed : ' + promises[i].value.name);
       }
       else if(promises[i].state === "rejected"){
-        logger.error('origin --> Label not delete : '+labels[i].name);
+        logger.error('origin --> Unable to delete the label : '+labels[i].name);
       }
       else{
-        logger.error('origin --> [err:promise] unknown...');
+        logger.error('origin --> [err:promise] Something went very wrong...');
       }
     }
   }
   else{
-    logger.success('origin --> Already clear !');
+    logger.success('origin --> No labels to delete !');
   }
 };
 
@@ -34,17 +34,17 @@ LabelLogger.prototype.logCreate = function (promises, jsonData){
     else if(promises[i].state === "rejected"){
       switch(promises[i].reason.code){
         case 404 :
-          logger.error('target --> Repository not founded');
+          logger.error('target --> Repository not found');
           break;
         case 422 :
-          logger.error('target --> Label already exist : ' + jsonData[i].name);
+          logger.error('target --> Label already exists : ' + jsonData[i].name);
           break;
         default:
           logger.error('target --> Unsupported github error code : '+promises[i].reason.code);
       }
     }
     else{
-      logger.error('target --> [err:promise] unknown...');
+      logger.error('target --> [err:promise] Something went very wrong...');
     }
   }
 };
@@ -57,10 +57,10 @@ LabelLogger.prototype.logExport = function (labels, path){
     for(i = 0; i < length; i++){
       logger.info('origin --> Label exported : (' + labels[i].color + ') ' + labels[i].name);
     }
-    logger.success('Labels exported in file : ' + path);
+    logger.success('Labels exported to the file : ' + path);
   }
   else{
-    logger.success('origin --> No labels in that repository !');
+    logger.success('origin --> No labels found in the target repository !');
   }
 };
 
